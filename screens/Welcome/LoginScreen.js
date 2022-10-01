@@ -71,6 +71,7 @@ export default function LoginScreen(props) {
       console.log("After credentials");
       const response = await signInWithCredential(auth, credential);
       AsyncStorage.setItem(phoneNumber, JSON.stringify(response));
+      props.navigation.navigate("module");
     } catch (err) {
       console.error(err);
     }
@@ -79,8 +80,6 @@ export default function LoginScreen(props) {
   if (screenNo === 1) {
     return <GetStarted screenNo={screenNo} setScreenNo={setScreenNo} />;
   } else if (screenNo === 2) {
-    return <Module screenNo={screenNo} setScreenNo={setScreenNo} />;
-  } else if (screenNo === 3) {
     return (
       <EnterPhone
         {...props}
@@ -92,7 +91,7 @@ export default function LoginScreen(props) {
         setScreenNo={setScreenNo}
       />
     );
-  } else if (screenNo === 4) {
+  } else if (screenNo === 3) {
     return (
       <VerifyOtp
         screenNo={screenNo}
@@ -102,7 +101,7 @@ export default function LoginScreen(props) {
         confirm={confirm}
       />
     );
-  } else if (screenNo === 5) {
+  } else if (screenNo === 4) {
     return (
       <EnterDetails
         {...props}
@@ -114,7 +113,7 @@ export default function LoginScreen(props) {
         setScreenNo={setScreenNo}
       />
     );
-  } else if (screenNo === 6) {
+  } else if (screenNo === 5) {
     return (
       <SelectMode {...props} screenNo={screenNo} setScreenNo={setScreenNo} />
     );

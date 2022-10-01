@@ -8,7 +8,6 @@ import {
   TextInput,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import OTP from "./OTP";
 import BackButton from "../BackButton";
 
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
@@ -16,9 +15,7 @@ import { firebaseConfig } from "../../firebase/setup";
 export default function EnterPhone({
   phoneNumber,
   setPhoneNumber,
-  screenNo,
   setScreenNo,
-  navigation,
   callback,
   recaptchaVerifier,
 }) {

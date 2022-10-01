@@ -10,8 +10,7 @@ import {
   FlatList,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import BackButton from "../BackButton";
-
+import BackButton from "../components/BackButton";
 
 export default function Module({
   phoneNumber,
@@ -23,15 +22,9 @@ export default function Module({
 }) {
   return (
     <View style={styles.container}>
-      <BackButton
-        onPress={() => {
-          setScreenNo((prev) => prev - 1);
-        }}
-      />
       <StatusBar style="auto" />
 
       <Text style={styles.welcome}>Welcome to DronaJr, User !!</Text>
-      
 
       <TouchableOpacity
         style={styles.loginBtn}
