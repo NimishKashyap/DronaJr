@@ -4,14 +4,10 @@ import EnterPhone from "../../components/InitalScreens/EnterPhone";
 import GetStarted from "../../components/InitalScreens/GetStarted";
 import SelectMode from "../../components/InitalScreens/SelectMode";
 import VerifyOtp from "../../components/InitalScreens/VerifyOtp";
-<<<<<<< HEAD
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getReactNativePersistence } from "firebase/auth/react-native";
 
-=======
-import Module from "../../components/Module";
->>>>>>> a18ecc99f00d6ae95ab8780e6a38dd3e7a3754f8
 import firebase from "firebase/compat/app";
 import { initializeApp, getApp } from "firebase/app";
 import {

@@ -34,7 +34,6 @@ export default function Task1({ setPosition }) {
       </Animated.View> */}
       <GestureRecognizer
         onSwipeUp={(state) => {
-          console.log("On swipe up");
           setPosition((curr) => curr + 1);
         }}
       >

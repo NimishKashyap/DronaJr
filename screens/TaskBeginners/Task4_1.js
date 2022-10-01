@@ -68,15 +68,12 @@ export default function Task4_1({ setPosition }) {
           }}
         >
           <TextInput
-            returnKeyType="go"
-            onSubmitEditing={() => {
-              setPosition((curr) => curr + 1);
-            }}
             style={{
               width: "65%",
               backgroundColor: "white",
               height: 30,
             }}
+            placeholder="Enter First Name"
           />
         </View>
         <View
@@ -93,6 +90,11 @@ export default function Task4_1({ setPosition }) {
           }}
         >
           <TextInput
+            returnKeyType="go"
+            onSubmitEditing={() => {
+              setPosition((curr) => curr + 1);
+            }}
+            placeholder="Enter Last Name"
             style={{
               width: "65%",
               backgroundColor: "white",
