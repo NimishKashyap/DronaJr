@@ -5243,6 +5243,11 @@ react-native-gradle-plugin@^0.0.7:
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz#96602f909745239deab7b589443f14fce5da2056"
   integrity sha512-+4JpbIx42zGTONhBTIXSyfyHICHC29VTvhkkoUOJAh/XHPEixpuBduYgf6Y4y9wsN1ARlQhBBoptTvXvAFQf5g==
 
+react-native-shared-preferences@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-shared-preferences/-/react-native-shared-preferences-1.0.2.tgz#952a02ab1e5418d48682cf1af96e2ee3fbf2a279"
+  integrity sha512-iLpHYE1kokUnPn9Y3Za301DkgDujjKMHKVUS9KOhHzIipc2mkzfFSo2bFAUYCfR2M4u0uZMpuVQviR19qypeHg==
+
 react-native@0.69.6:
   version "0.69.6"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.69.6.tgz#cdd1a5757d902b91b165c28fdda4e518ed6f683a"

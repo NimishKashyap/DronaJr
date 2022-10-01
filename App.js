@@ -9,9 +9,24 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import auth from "@react-native-firebase/auth";
 
 export default function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [confirm, setConfirm] = useState(null);
+
+  async function signInWithPhoneNumber(phoneNumber) {
+    const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+    setConfirm(confirmation);
+  }
+
+  async function confirmCode() {
+    try {
+      await confirm.confirm(code);
+    } catch (err) {
+      console.error("Invalid code");
+    }
+  }
 
   return (
     <View style={styles.container}>
