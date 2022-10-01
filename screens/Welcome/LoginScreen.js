@@ -4,7 +4,7 @@ import EnterPhone from "../../components/InitalScreens/EnterPhone";
 import GetStarted from "../../components/InitalScreens/GetStarted";
 import SelectMode from "../../components/InitalScreens/SelectMode";
 import VerifyOtp from "../../components/InitalScreens/VerifyOtp";
-
+import Module from "../../components/InitalScreens/Module";
 import firebase from "firebase/compat/app";
 import { initializeApp, getApp } from "firebase/app";
 import {
@@ -71,7 +71,11 @@ export default function LoginScreen(props) {
 
   if (screenNo === 1) {
     return <GetStarted screenNo={screenNo} setScreenNo={setScreenNo} />;
-  } else if (screenNo === 2) {
+  } 
+  else if (screenNo === 2) {
+    return <Module screenNo={screenNo} setScreenNo={setScreenNo} />;
+  }
+  else if (screenNo === 3) {
     return (
       <EnterPhone
         {...props}
@@ -83,7 +87,7 @@ export default function LoginScreen(props) {
         setScreenNo={setScreenNo}
       />
     );
-  } else if (screenNo === 3) {
+  } else if (screenNo === 4) {
     return (
       <VerifyOtp
         screenNo={screenNo}
@@ -93,7 +97,7 @@ export default function LoginScreen(props) {
         confirm={confirm}
       />
     );
-  } else if (screenNo === 4) {
+  } else if (screenNo === 5) {
     return (
       <EnterDetails
         {...props}
@@ -105,7 +109,7 @@ export default function LoginScreen(props) {
         setScreenNo={setScreenNo}
       />
     );
-  } else if (screenNo === 5) {
+  } else if (screenNo === 6) {
     return (
       <SelectMode {...props} screenNo={screenNo} setScreenNo={setScreenNo} />
     );
