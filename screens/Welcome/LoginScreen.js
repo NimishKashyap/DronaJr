@@ -5,15 +5,22 @@ import GetStarted from "../../components/InitalScreens/GetStarted";
 import SelectMode from "../../components/InitalScreens/SelectMode";
 import VerifyOtp from "../../components/InitalScreens/VerifyOtp";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getReactNativePersistence } from "firebase/auth/react-native";
+
 import firebase from "firebase/compat/app";
 import { initializeApp, getApp } from "firebase/app";
 import {
+  initializeAuth,
   getAuth,
   PhoneAuthProvider,
   signInWithCredential,
 } from "firebase/auth";
 
 const app = getApp();
+initializeAuth(app, {
+  persistence: getReactNativePersistence(AsyncStorage),
+});
 const auth = getAuth();
 
 export default function LoginScreen(props) {
@@ -63,7 +70,7 @@ export default function LoginScreen(props) {
 
       console.log("After credentials");
       const response = await signInWithCredential(auth, credential);
-      console.log(response);
+      AsyncStorage.setItem(phoneNumber, JSON.stringify(response));
     } catch (err) {
       console.error(err);
     }
