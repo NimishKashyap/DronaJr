@@ -80,6 +80,7 @@ export default function OTP({
           <TextInput
             key={index}
             ref={(element) => inputCodeRef.current.push(element)}
+            keyboardType="numeric"
             style={[
               styles.input,
               otpStyles,

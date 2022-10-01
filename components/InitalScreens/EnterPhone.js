@@ -13,7 +13,7 @@ export default function EnterPhone() {
       <OTP />
 
       <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>Enter phone number</Text>
+        <Text style={styles.loginText}>Verify OTP</Text>
       </TouchableOpacity>
     </View>
   );
@@ -50,14 +50,16 @@ const styles = StyleSheet.create({
 
   loginBtn: {
     width: "80%",
-    borderRadius: 25,
+    borderRadius: 8,
     display: "flex",
     flexDirection: "row",
     height: 50,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    backgroundColor: "#FF1493",
+    borderBottomColor: "#2c703e",
+    borderBottomWidth: 8,
+    backgroundColor: "#55ad6d",
   },
   loginText: {
     fontWeight: "900",
