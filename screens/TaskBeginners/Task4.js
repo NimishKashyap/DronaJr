@@ -4,6 +4,9 @@ import {
   TouchableWithoutFeedback,
   useWindowDimensions,
 } from "react-native";
+
+import { Audio } from "expo-av";
+
 import {
   Animated,
   Dimensions,
@@ -20,9 +23,27 @@ import GestureRecognizer, { swipeDirections } from "react-native-swipe-detect";
 export default function Task4({ setPosition }) {
   const [fadeAnim] = useState(new Animated.Value(0));
   const [timing] = useState(new Animated.Value(0));
+  const [sound, setSound] = useState();
 
   const animation = useRef(null);
+  const playSound = async () => {
+    console.log("Loading sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/Task1_audio/3rd.mp3")
+    );
+    setSound(sound);
+    console.log("playing");
+    await sound.playAsync();
+  };
 
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -35,6 +56,7 @@ export default function Task4({ setPosition }) {
         display: "none",
         useNativeDriver: true,
       }).start();
+      playSound();
     });
   }, []);
 

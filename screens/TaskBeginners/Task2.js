@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ImageBackground, TouchableWithoutFeedback } from "react-native";
 import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
+// import SoundPlayer from "react-native-sound-player";
+import { Audio } from "expo-av";
 
 import LottieView from "lottie-react-native";
 
@@ -10,7 +12,28 @@ export default function Task2({ setPosition }) {
   const [fadeAnim] = useState(new Animated.Value(0));
   const [timing] = useState(new Animated.Value(0));
 
+  const [sound, setSound] = useState();
+
   const animation = useRef(null);
+
+  const playSound = async () => {
+    console.log("Loading sound");
+    const { sound } = await Audio.Sound.createAsync(
+      require("../../assets/Task1_audio/1st.mp3")
+    );
+    setSound(sound);
+    console.log("playing");
+    await sound.playAsync();
+  };
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -24,8 +47,11 @@ export default function Task2({ setPosition }) {
         display: "none",
         useNativeDriver: true,
       }).start();
+
+      playSound();
     });
   }, []);
+  useEffect(() => {}, []);
 
   return (
     <>

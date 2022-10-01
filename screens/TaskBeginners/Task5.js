@@ -45,12 +45,7 @@ export default function Task5({ setPosition }) {
       {/* <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
         <Text>Hello World</Text>
       </Animated.View> */}
-      <View
-        style={[
-          styles.image_container,
-          { minHeight: Math.round(windowHeight) + 25 },
-        ]}
-      >
+      <View style={[styles.image_container]}>
         <ImageBackground
           style={styles.image}
           source={require("../../assets/Task_1/Phone_4.png")}
@@ -79,6 +74,9 @@ const styles = StyleSheet.create({
   image: {
     opacity: 0.6,
     height: "100%",
+    marginTop: 30,
+    margin: 5,
+    paddingHorizontal: 10,
     padding: 60,
     width: undefined,
     resizeMode: "contain",

@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { ImageBackground } from "react-native";
 import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
 
+import { Audio } from "expo-av";
+
 import LottieView from "lottie-react-native";
 
 import GestureRecognizer, { swipeDirections } from "react-native-swipe-detect";
@@ -9,8 +11,32 @@ import GestureRecognizer, { swipeDirections } from "react-native-swipe-detect";
 export default function Task1({ setPosition }) {
   const [fadeAnim] = useState(new Animated.Value(0));
   const [timing] = useState(new Animated.Value(0));
+  const [sound, setSound] = useState();
 
   const animation = useRef(null);
+
+  const playSound = async () => {
+    try {
+      console.log("Loading sound");
+      const { sound } = await Audio.Sound.createAsync(
+        require("../../assets/Task1_audio/swipeUp.mp3")
+      );
+      setSound(sound);
+      console.log("playing");
+      await sound.playAsync();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -24,6 +50,8 @@ export default function Task1({ setPosition }) {
         display: "none",
         useNativeDriver: true,
       }).start();
+
+      playSound();
     });
   }, []);
 
