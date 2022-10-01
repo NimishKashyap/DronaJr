@@ -1,10 +1,25 @@
-import React, {useState, useRef, useEffect} from 'react';
-import {View, TextInput, Dimensions} from 'react-native';
+import React, { useState, useRef, useEffect } from "react";
+import { View, TextInput, Dimensions, StyleSheet } from "react-native";
 
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
+const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
 
-import styles from '../styles';
+const styles = StyleSheet.create({
+  form: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  input: {
+    // flex: 1,
+    marginHorizontal: 4,
+    fontSize: 32,
+    textAlign: "center",
+    backgroundColor: "#eee",
+    borderRadius: 2,
+    // paddingVertical: 12,
+  },
+});
 
 const initCodes = [];
 export default function OTP({
@@ -19,7 +34,7 @@ export default function OTP({
   useEffect(() => {
     const codes = [];
     for (let i = 0; i < codeCount; i++) {
-      codes.push('');
+      codes.push("");
     }
     setCodes(codes);
   }, []);
@@ -27,7 +42,7 @@ export default function OTP({
   useEffect(() => {
     onTyping && onTyping(getCodes());
     const isTypeFinish = codes.every(function (i) {
-      return i !== '';
+      return i !== "";
     });
     if (isTypeFinish) {
       onFinish && onFinish(getCodes());
@@ -35,8 +50,8 @@ export default function OTP({
   }, [codes]);
 
   const getCodes = () => {
-    let codeString = '';
-    codes.forEach(code => {
+    let codeString = "";
+    codes.forEach((code) => {
       codeString += code;
     });
     return codeString;
@@ -51,7 +66,7 @@ export default function OTP({
   const onKeyPress = (event, index) => {
     const key = event.nativeEvent.key;
     let destIndex = index;
-    if (key === 'Backspace') {
+    if (key === "Backspace") {
       destIndex = index > 0 ? index - 1 : 0;
     } else {
       destIndex = index < codeCount - 1 ? index + 1 : codeCount - 1;
@@ -62,15 +77,16 @@ export default function OTP({
     <View style={[styles.form, containerStyle]}>
       {codes.map((code, index) => {
         return (
-          <TextInput key={index}
-            ref={element => inputCodeRef.current.push(element)}
+          <TextInput
+            key={index}
+            ref={(element) => inputCodeRef.current.push(element)}
             style={[
               styles.input,
               otpStyles,
-              {width: width / (codeCount + 2), height: height / 14},
+              { width: width / (codeCount + 2), height: height / 14 },
             ]}
-            onChangeText={text => onChangeCode(text, index)}
-            onKeyPress={event => onKeyPress(event, index)}
+            onChangeText={(text) => onChangeCode(text, index)}
+            onKeyPress={(event) => onKeyPress(event, index)}
             value={code}
           />
         );

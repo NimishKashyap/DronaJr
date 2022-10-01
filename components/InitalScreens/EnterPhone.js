@@ -2,6 +2,7 @@ import { StatusBar } from "expo-status-bar";
 
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import OTP from "./OTP";
 
 export default function EnterPhone() {
   return (
@@ -9,12 +10,10 @@ export default function EnterPhone() {
       <StatusBar style="auto" />
 
       {/* <Text style={styles.welcome}>Welcome</Text> */}
+      <OTP />
 
       <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>
-          Let's Get Started{" "}
-          <AntDesign name="rightcircle" size={24} color="white" />
-        </Text>
+        <Text style={styles.loginText}>Enter phone number</Text>
       </TouchableOpacity>
     </View>
   );
