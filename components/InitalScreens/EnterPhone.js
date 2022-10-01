@@ -1,6 +1,12 @@
 import { StatusBar } from "expo-status-bar";
 
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  TextInput,
+} from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import OTP from "./OTP";
 
@@ -10,10 +16,21 @@ export default function EnterPhone() {
       <StatusBar style="auto" />
 
       {/* <Text style={styles.welcome}>Welcome</Text> */}
-      <OTP />
+      {/* <OTP /> */}
+      <TextInput
+        style={styles.inputView}
+        placeholder="Enter Phone Number"
+        keyboardType="numeric"
+      ></TextInput>
 
       <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>Verify OTP</Text>
+        <Text style={styles.loginText}>Next</Text>
+        <AntDesign
+          style={styles.icon}
+          name="rightcircle"
+          size={24}
+          color="white"
+        />
       </TouchableOpacity>
     </View>
   );
@@ -27,13 +44,18 @@ const styles = StyleSheet.create({
   },
 
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "#eeee",
     borderRadius: 30,
-    width: "70%",
+    width: "80%",
+    paddingLeft: 20,
     height: 45,
     marginBottom: 20,
 
     alignItems: "center",
+  },
+  icon: {
+    position: "absolute",
+    right: 15,
   },
 
   TextInput: {
@@ -52,8 +74,10 @@ const styles = StyleSheet.create({
     width: "80%",
     borderRadius: 8,
     display: "flex",
+    paddingHorizontal: 20,
     flexDirection: "row",
     height: 50,
+
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
