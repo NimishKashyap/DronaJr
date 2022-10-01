@@ -1,5 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import {} from "@react-navigation/native-stack";
 import {
   StyleSheet,
   Text,
@@ -28,27 +30,29 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={require("./assets/logo.jpg")} />
+    <NavigationContainer>
+      <View style={styles.container}>
+        <Image style={styles.image} source={require("./assets/logo.jpg")} />
 
-      <StatusBar style="auto" />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Email."
-          placeholderTextColor="#003f5c"
-          onChangeText={(phone) => setPhoneNumber(phone)}
-        />
+        <StatusBar style="auto" />
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Email."
+            placeholderTextColor="#003f5c"
+            onChangeText={(phone) => setPhoneNumber(phone)}
+          />
+        </View>
+
+        <TouchableOpacity>
+          <Text style={styles.forgot_button}>Forgot Password?</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.loginBtn}>
+          <Text style={styles.loginText}>LOGIN</Text>
+        </TouchableOpacity>
       </View>
-
-      <TouchableOpacity>
-        <Text style={styles.forgot_button}>Forgot Password?</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>LOGIN</Text>
-      </TouchableOpacity>
-    </View>
+    </NavigationContainer>
   );
 }
 
