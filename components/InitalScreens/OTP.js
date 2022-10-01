@@ -102,6 +102,7 @@ export default function OTP({
     inputCodeRef.current[destIndex].focus();
   };
   return (
+<<<<<<< HEAD
     <View style={styles.OTP}>
       <View style={styles.form}>
         {codes.map((code, index) => {
@@ -137,6 +138,26 @@ export default function OTP({
           color="white"
         />
       </TouchableOpacity>
+=======
+    <View style={[styles.form, containerStyle]}>
+      {codes.map((code, index) => {
+        return (
+          <TextInput
+            key={index}
+            ref={(element) => inputCodeRef.current.push(element)}
+            keyboardType="numeric"
+            style={[
+              styles.input,
+              otpStyles,
+              { width: width / (codeCount + 2), height: height / 14 },
+            ]}
+            onChangeText={(text) => onChangeCode(text, index)}
+            onKeyPress={(event) => onKeyPress(event, index)}
+            value={code}
+          />
+        );
+      })}
+>>>>>>> 8bb53b91c7e237f19822029cc8dc7040f792ae3a
     </View>
   );
 }

@@ -94,14 +94,16 @@ const styles = StyleSheet.create({
 
   loginBtn: {
     width: "80%",
-    borderRadius: 25,
+    borderRadius: 8,
     display: "flex",
     flexDirection: "row",
     height: 50,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    backgroundColor: "#FF1493",
+    borderBottomColor: "#ccb419",
+    borderBottomWidth: 8,
+    backgroundColor: "#ebd960",
   },
   loginText: {
     fontWeight: "900",
