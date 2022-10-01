@@ -8,14 +8,16 @@ import {
   TextInput,
   Button,
 } from "react-native";
+import EnterDetails from "../../components/InitalScreens/EnterDetails";
 import EnterPhone from "../../components/InitalScreens/EnterPhone";
 import GetStarted from "../../components/InitalScreens/GetStarted";
+import SelectMode from "../../components/InitalScreens/SelectMode";
 
 export default function LoginScreen() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [confirm, setConfirm] = useState(null);
 
-  const [screenNo, setScreenNo] = useState(2);
+  const [screenNo, setScreenNo] = useState(4);
 
   async function signInWithPhoneNumber(phoneNumber) {
     const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
@@ -55,6 +57,10 @@ export default function LoginScreen() {
     return <GetStarted />;
   } else if (screenNo === 2) {
     return <EnterPhone />;
+  } else if (screenNo === 3) {
+    return <EnterDetails />;
+  } else if (screenNo === 4) {
+    return <SelectMode />;
   }
 }
 const styles = StyleSheet.create({

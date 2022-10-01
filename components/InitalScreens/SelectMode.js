@@ -1,33 +1,42 @@
+// This component is to select the mode
 import { StatusBar } from "expo-status-bar";
 
 import {
   View,
-  Image,
   Text,
   TouchableOpacity,
   StyleSheet,
   TextInput,
-  Button,
 } from "react-native";
+
 import { AntDesign } from "@expo/vector-icons";
 
-export default function GetStarted() {
+export default function SelectMode() {
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={require("../../assets/logo.jpg")} />
-
       <StatusBar style="auto" />
 
       <TouchableOpacity style={styles.loginBtn}>
         <Text style={styles.loginText}>
-          Let's Get Started{" "}
-          <AntDesign name="rightcircle" size={24} color="white" />
+          SinglePlayer <AntDesign name="rightcircle" size={24} color="white" />
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.loginBtn}>
+        <Text style={styles.loginText}>
+          Multiplayer <AntDesign name="rightcircle" size={24} color="white" />
         </Text>
       </TouchableOpacity>
     </View>
   );
 }
 const styles = StyleSheet.create({
+  checkbox: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  textStyle: {
+    paddingRight: 5,
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -36,11 +45,12 @@ const styles = StyleSheet.create({
   },
 
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "#eeee",
     borderRadius: 30,
-    width: "70%",
+    width: "80%",
     height: 45,
     marginBottom: 20,
+    paddingHorizontal: 20,
 
     alignItems: "center",
   },
@@ -70,7 +80,6 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontWeight: "900",
-    letterSpacing: 3,
     fontSize: 20,
     color: "white",
   },
