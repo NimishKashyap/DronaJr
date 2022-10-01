@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import {
   View,
@@ -9,10 +8,14 @@ import {
   TextInput,
   Button,
 } from "react-native";
+import EnterPhone from "../../components/InitalScreens/EnterPhone";
+import GetStarted from "../../components/InitalScreens/GetStarted";
 
 export default function LoginScreen() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [confirm, setConfirm] = useState(null);
+
+  const [screenNo, setScreenNo] = useState(2);
 
   async function signInWithPhoneNumber(phoneNumber) {
     const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
@@ -26,26 +29,33 @@ export default function LoginScreen() {
       console.error("Invalid code");
     }
   }
-  return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={require("../../assets/logo.jpg")} />
+  //   return (
+  //     // <View style={styles.container}>
+  //     //   <Image style={styles.image} source={require("../../assets/logo.jpg")} />
 
-      <StatusBar style="auto" />
-      {/* <View style={styles.inputView}> */}
-      {/* <TextInput
-          style={styles.TextInput}
-          placeholder="Email."
-          placeholderTextColor="#003f5c"
-          onChangeText={(phone) => setPhoneNumber(phone)}
-        /> */}
-      <Text style={styles.welcome}>Welcome</Text>
-      {/* </View> */}
+  //     //   <StatusBar style="auto" />
+  //     //   {/* <View style={styles.inputView}> */}
+  //     //   {/* <TextInput
+  //     //       style={styles.TextInput}
+  //     //       placeholder="Email."
+  //     //       placeholderTextColor="#003f5c"
+  //     //       onChangeText={(phone) => setPhoneNumber(phone)}
+  //     //     /> */}
+  //     //   <Text style={styles.welcome}>Welcome</Text>
+  //     //   {/* </View> */}
 
-      <TouchableOpacity style={styles.loginBtn}>
-        <Text style={styles.loginText}>Let's Get Started</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  //     //   <TouchableOpacity style={styles.loginBtn}>
+  //     //     <Text style={styles.loginText}>Let's Get Started</Text>
+  //     //   </TouchableOpacity>
+  //     // </View>
+  //     // <GetStarted />
+
+  //   );
+  if (screenNo === 1) {
+    return <GetStarted />;
+  } else if (screenNo === 2) {
+    return <EnterPhone />;
+  }
 }
 const styles = StyleSheet.create({
   container: {
