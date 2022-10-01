@@ -4,7 +4,7 @@ import EnterPhone from "../../components/InitalScreens/EnterPhone";
 import GetStarted from "../../components/InitalScreens/GetStarted";
 import SelectMode from "../../components/InitalScreens/SelectMode";
 import VerifyOtp from "../../components/InitalScreens/VerifyOtp";
-import Module from "../../components/InitalScreens/Module";
+import Module from "../../components/Module";
 import firebase from "firebase/compat/app";
 import { initializeApp, getApp } from "firebase/app";
 import {
