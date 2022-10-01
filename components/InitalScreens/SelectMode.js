@@ -1,3 +1,4 @@
+// This component is to select the mode
 import { StatusBar } from "expo-status-bar";
 
 import {
@@ -7,54 +8,41 @@ import {
   StyleSheet,
   TextInput,
 } from "react-native";
+
 import { AntDesign } from "@expo/vector-icons";
-import OTP from "./OTP";
 import BackButton from "../BackButton";
 
-export default function EnterPhone({
-  phoneNumber,
-  setPhoneNumber,
-  screenNo,
-  setScreenNo,
-  navigation,
-}) {
+export default function SelectMode({ screenNo, setScreenNo }) {
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <BackButton
         onPress={() => {
           setScreenNo((prev) => prev - 1);
         }}
       />
-      <StatusBar style="auto" />
 
-      {/* <Text style={styles.welcome}>Welcome</Text> */}
-      {/* <OTP /> */}
-      <TextInput
-        value={phoneNumber}
-        onChangeText={(newPhone) => setPhoneNumber(newPhone)}
-        style={styles.inputView}
-        placeholder="Enter Phone Number"
-        keyboardType="numeric"
-      ></TextInput>
-
-      <TouchableOpacity
-        style={styles.loginBtn}
-        onPress={() => {
-          setScreenNo((prev) => prev + 1);
-        }}
-      >
-        <Text style={styles.loginText}>Next</Text>
-        <AntDesign
-          style={styles.icon}
-          name="rightcircle"
-          size={24}
-          color="white"
-        />
+      <TouchableOpacity style={styles.loginBtn}>
+        <Text style={styles.loginText}>
+          SinglePlayer <AntDesign name="rightcircle" size={24} color="white" />
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.loginBtn}>
+        <Text style={styles.loginText}>
+          Multiplayer <AntDesign name="rightcircle" size={24} color="white" />
+        </Text>
       </TouchableOpacity>
     </View>
   );
 }
 const styles = StyleSheet.create({
+  checkbox: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  textStyle: {
+    paddingRight: 5,
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
@@ -66,15 +54,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#eeee",
     borderRadius: 30,
     width: "80%",
-    paddingLeft: 20,
     height: 45,
     marginBottom: 20,
+    paddingHorizontal: 20,
 
     alignItems: "center",
-  },
-  icon: {
-    position: "absolute",
-    right: 15,
   },
 
   TextInput: {
@@ -91,22 +75,17 @@ const styles = StyleSheet.create({
 
   loginBtn: {
     width: "80%",
-    borderRadius: 8,
+    borderRadius: 25,
     display: "flex",
-    paddingHorizontal: 20,
     flexDirection: "row",
     height: 50,
-
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    borderBottomColor: "#2c703e",
-    borderBottomWidth: 8,
-    backgroundColor: "#55ad6d",
+    backgroundColor: "#FF1493",
   },
   loginText: {
     fontWeight: "900",
-    letterSpacing: 3,
     fontSize: 20,
     color: "white",
   },

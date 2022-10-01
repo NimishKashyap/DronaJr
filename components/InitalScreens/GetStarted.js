@@ -11,16 +11,19 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function GetStarted() {
+export default function GetStarted({ screenNo, setScreenNo }) {
   return (
     <View style={styles.container}>
       <Image style={styles.image} source={require("../../assets/logo.jpg")} />
 
       <StatusBar style="auto" />
 
-      {/* <Text style={styles.welcome}>Welcome</Text> */}
-
-      <TouchableOpacity style={styles.loginBtn}>
+      <TouchableOpacity
+        style={styles.loginBtn}
+        onPress={() => {
+          setScreenNo((prev) => prev + 1);
+        }}
+      >
         <Text style={styles.loginText}>
           Let's Get Started{" "}
           <AntDesign name="rightcircle" size={24} color="white" />
