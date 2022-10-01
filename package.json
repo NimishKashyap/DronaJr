@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^0.17.0",
     "@react-native-firebase/app": "^15.6.0",
     "@react-native-firebase/auth": "^15.6.0",
