@@ -1,7 +1,6 @@
-import { initializeApp } from "firebase/app";
-import * as firebase from "firebase";
+import firebase from "firebase/compat/app";
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDb70r-yWeyquWRaRa0oYfkhxkspRRuzhA",
   authDomain: "hackoverflow-fd988.firebaseapp.com",
   projectId: "hackoverflow-fd988",
@@ -10,5 +9,6 @@ const firebaseConfig = {
   appId: "1:20913669676:web:c49413d5f7bb74bda07389",
 };
 
-firebase.initializeApp(firebaseConfig);
-export default firebase;
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}

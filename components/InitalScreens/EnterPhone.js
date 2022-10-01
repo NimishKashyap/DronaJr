@@ -11,12 +11,16 @@ import { AntDesign } from "@expo/vector-icons";
 import OTP from "./OTP";
 import BackButton from "../BackButton";
 
+import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
+import { firebaseConfig } from "../../firebase/setup";
 export default function EnterPhone({
   phoneNumber,
   setPhoneNumber,
   screenNo,
   setScreenNo,
   navigation,
+  callback,
+  recaptchaVerifier,
 }) {
   return (
     <View style={styles.container}>
@@ -26,6 +30,10 @@ export default function EnterPhone({
         }}
       />
       <StatusBar style="auto" />
+      <FirebaseRecaptchaVerifierModal
+        ref={recaptchaVerifier}
+        firebaseConfig={firebaseConfig}
+      />
 
       {/* <Text style={styles.welcome}>Welcome</Text> */}
       {/* <OTP /> */}
@@ -40,7 +48,7 @@ export default function EnterPhone({
       <TouchableOpacity
         style={styles.loginBtn}
         onPress={() => {
-          setScreenNo((prev) => prev + 1);
+          callback(phoneNumber);
         }}
       >
         <Text style={styles.loginText}>Next</Text>

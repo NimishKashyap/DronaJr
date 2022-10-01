@@ -1,13 +1,7 @@
 // This component is to select the mode
 import { StatusBar } from "expo-status-bar";
 
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  TextInput,
-} from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
 import BackButton from "../BackButton";
