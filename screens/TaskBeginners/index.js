@@ -1,12 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { Text, View, ScrollView, StyleSheet } from "react-native";
+import Final from "./Final";
 import Task1 from "./Task1";
 import Task2 from "./Task2";
 import Task3 from "./Task3";
 import Task4 from "./Task4";
 import Task4_1 from "./Task4_1";
 import Task5 from "./Task5";
+import Task6 from "./Task6";
 
 const Home = () => {
   const [position, setPosition] = useState(1);
@@ -36,7 +38,10 @@ const Home = () => {
         <Task4_1 setPosition={setPosition} position={position} />
       )}
       {position === 6 && (
-        <Task5 setPosition={setPosition} position={position} />
+        <Task6 setPosition={setPosition} position={position} />
+      )}
+      {position === 7 && (
+        <Final setPosition={setPosition} position={position} />
       )}
     </View>
   );
