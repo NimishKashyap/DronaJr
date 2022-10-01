@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import {} from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {
   StyleSheet,
   Text,
@@ -11,6 +11,8 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -31,27 +33,9 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <Image style={styles.image} source={require("./assets/logo.jpg")} />
-
-        <StatusBar style="auto" />
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.TextInput}
-            placeholder="Email."
-            placeholderTextColor="#003f5c"
-            onChangeText={(phone) => setPhoneNumber(phone)}
-          />
-        </View>
-
-        <TouchableOpacity>
-          <Text style={styles.forgot_button}>Forgot Password?</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.loginBtn}>
-          <Text style={styles.loginText}>LOGIN</Text>
-        </TouchableOpacity>
-      </View>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
