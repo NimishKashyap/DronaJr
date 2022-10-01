@@ -13,20 +13,40 @@ import {
 import CheckBox from "expo-checkbox";
 import { AntDesign } from "@expo/vector-icons";
 import { useState } from "react";
+import BackButton from "../BackButton";
 
-export default function GetStarted() {
+export default function EnterDetails({
+  setScreenNo,
+  name,
+  age,
+  setName,
+  setAge,
+}) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <TextInput style={styles.inputView} placeholder="Enter name" />
+      <BackButton onPress={() => setScreenNo((prev) => prev - 1)} />
+      <TextInput
+        value={name}
+        onChangeText={(prev) => setName(prev)}
+        style={styles.inputView}
+        placeholder="Enter name"
+      />
 
       <TextInput
         style={styles.inputView}
+        value={age}
+        onChangeText={(prev) => setAge(prev)}
         placeholder="Enter age"
         keyboardType="numeric"
       />
 
-      <TouchableOpacity style={styles.loginBtn}>
+      <TouchableOpacity
+        style={styles.loginBtn}
+        onPress={() => {
+          setScreenNo((prev) => prev + 1);
+        }}
+      >
         <Text style={styles.loginText}>
           On the way! <AntDesign name="rightcircle" size={24} color="white" />
         </Text>

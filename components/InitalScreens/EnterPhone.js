@@ -9,21 +9,40 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import OTP from "./OTP";
+import BackButton from "../BackButton";
 
-export default function EnterPhone() {
+export default function EnterPhone({
+  phoneNumber,
+  setPhoneNumber,
+  screenNo,
+  setScreenNo,
+  navigation,
+}) {
   return (
     <View style={styles.container}>
+      <BackButton
+        onPress={() => {
+          setScreenNo((prev) => prev - 1);
+        }}
+      />
       <StatusBar style="auto" />
 
       {/* <Text style={styles.welcome}>Welcome</Text> */}
       {/* <OTP /> */}
       <TextInput
+        value={phoneNumber}
+        onChangeText={(newPhone) => setPhoneNumber(newPhone)}
         style={styles.inputView}
         placeholder="Enter Phone Number"
         keyboardType="numeric"
       ></TextInput>
 
-      <TouchableOpacity style={styles.loginBtn}>
+      <TouchableOpacity
+        style={styles.loginBtn}
+        onPress={() => {
+          setScreenNo((prev) => prev + 1);
+        }}
+      >
         <Text style={styles.loginText}>Next</Text>
         <AntDesign
           style={styles.icon}

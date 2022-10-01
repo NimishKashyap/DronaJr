@@ -10,11 +10,17 @@ import {
 } from "react-native";
 
 import { AntDesign } from "@expo/vector-icons";
+import BackButton from "../BackButton";
 
-export default function SelectMode() {
+export default function SelectMode({ screenNo, setScreenNo }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <BackButton
+        onPress={() => {
+          setScreenNo((prev) => prev - 1);
+        }}
+      />
 
       <TouchableOpacity style={styles.loginBtn}>
         <Text style={styles.loginText}>
