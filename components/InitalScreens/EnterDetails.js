@@ -101,9 +101,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    borderBottomColor: "#2c703e",
+    borderBottomColor: "#ccb419",
     borderBottomWidth: 8,
-    backgroundColor: "#55ad6d",
+    backgroundColor: "#ebd960",
   },
   loginText: {
     fontWeight: "900",
