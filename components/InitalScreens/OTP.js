@@ -1,5 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
-import { View, TextInput, Dimensions, StyleSheet } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import {
+  View,
+  TextInput,
+  Dimensions,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 
 const width = Dimensions.get("window").width;
 const height = Dimensions.get("window").height;
@@ -15,19 +23,39 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
     fontSize: 32,
     textAlign: "center",
-    backgroundColor: "#eee",
+    backgroundColor: "#ddd",
     borderRadius: 2,
     // paddingVertical: 12,
+  },
+  loginBtn: {
+    width: "80%",
+    borderRadius: 25,
+    display: "flex",
+    paddingHorizontal: 20,
+    flexDirection: "row",
+    height: 50,
+
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+    backgroundColor: "#FF1493",
+  },
+  OTP: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: Dimensions.get("screen").height,
   },
 });
 
 const initCodes = [];
 export default function OTP({
-  containerStyle,
   otpStyles,
-  codeCount = 4,
+  codeCount = 6,
   onTyping,
   onFinish,
+  setCode,
+  callback,
 }) {
   const inputCodeRef = useRef(new Array());
   const [codes, setCodes] = useState(initCodes);
@@ -74,23 +102,41 @@ export default function OTP({
     inputCodeRef.current[destIndex].focus();
   };
   return (
-    <View style={[styles.form, containerStyle]}>
-      {codes.map((code, index) => {
-        return (
-          <TextInput
-            key={index}
-            ref={(element) => inputCodeRef.current.push(element)}
-            style={[
-              styles.input,
-              otpStyles,
-              { width: width / (codeCount + 2), height: height / 14 },
-            ]}
-            onChangeText={(text) => onChangeCode(text, index)}
-            onKeyPress={(event) => onKeyPress(event, index)}
-            value={code}
-          />
-        );
-      })}
+    <View style={styles.OTP}>
+      <View style={styles.form}>
+        {codes.map((code, index) => {
+          return (
+            <TextInput
+              key={index}
+              keyboardType="phone-pad"
+              ref={(element) => inputCodeRef.current.push(element)}
+              style={[
+                styles.input,
+                otpStyles,
+                { width: width / (codeCount + 2), height: height / 14 },
+              ]}
+              onChangeText={(text) => onChangeCode(text, index)}
+              onKeyPress={(event) => onKeyPress(event, index)}
+              value={code}
+            />
+          );
+        })}
+      </View>
+      <TouchableOpacity
+        style={styles.loginBtn}
+        onPress={() => {
+          setCode(getCodes());
+          console.log(getCodes());
+          callback();
+        }}
+      >
+        <AntDesign
+          style={styles.icon}
+          name="rightcircle"
+          size={24}
+          color="white"
+        />
+      </TouchableOpacity>
     </View>
   );
 }

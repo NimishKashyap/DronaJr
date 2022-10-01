@@ -51,25 +51,22 @@ export default function LoginScreen(props) {
         recaptchaVerifier.current
       );
       setVerificationId(verificationId);
+      setScreenNo((curr) => curr + 1);
     } catch (err) {
       console.error(err);
     }
   };
 
-  const confirmCode = () => {
-    const credential = firebase.auth.PhoneAuthProvider.credential(
-      verificationId,
-      code
-    );
-    firebase
-      .auth()
-      .signInWithCredential(credential)
-      .then(() => {
-        setCode("");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const confirmCode = async () => {
+    try {
+      const credential = PhoneAuthProvider.credential(verificationId, code);
+
+      console.log("After credentials");
+      const response = await signInWithCredential(auth, credential);
+      console.log(response);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   if (screenNo === 1) {
@@ -91,6 +88,8 @@ export default function LoginScreen(props) {
       <VerifyOtp
         screenNo={screenNo}
         setScreenNo={setScreenNo}
+        setCode={setCode}
+        callback={confirmCode}
         confirm={confirm}
       />
     );

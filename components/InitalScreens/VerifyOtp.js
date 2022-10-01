@@ -1,12 +1,12 @@
 import React from "react";
-import { Text, StyleSheet, View } from "react-native";
 
-export default function VerifyOtp({ screenNo, setScreenNo, confirm }) {
-  return (
-    <View>
-      <Text> textInComponent </Text>
-    </View>
-  );
+import OTP from "./OTP";
+export default function VerifyOtp({
+  callback,
+  screenNo,
+  setScreenNo,
+  confirm,
+  setCode,
+}) {
+  return <OTP setCode={setCode} callback={callback} />;
 }
-
-const styles = StyleSheet.create({});
