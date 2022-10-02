@@ -33,7 +33,7 @@ const DATA = [
     title: "Level 3: Advanced",
     description: "Description about Advanced Level Tasks",
     image: "https://i.imgur.com/lqU5VZi.png",
-    to: "#",
+    to: "advanced_video",
   },
 ];
 
@@ -75,7 +75,7 @@ export default function Module({ phoneNumber, callback, navigation }) {
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.loginBtn}
         onPress={() => {
           callback(phoneNumber);
@@ -88,7 +88,7 @@ export default function Module({ phoneNumber, callback, navigation }) {
           size={24}
           color="white"
         />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }

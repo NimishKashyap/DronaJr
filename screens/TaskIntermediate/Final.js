@@ -1,9 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  ImageBackground,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Audio } from "expo-av";
 import { Animated, Dimensions, StyleSheet, View } from "react-native";
 
@@ -11,7 +7,7 @@ import LottieView from "lottie-react-native";
 import { Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function Final({ setPosition, navigation }) {
+export default function Final({ navigation }) {
   const [fadeAnim] = useState(new Animated.Value(0));
   const [sound, setSound] = useState();
 

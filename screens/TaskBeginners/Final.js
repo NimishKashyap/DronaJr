@@ -101,11 +101,12 @@ export default function Final({ setPosition, navigation }) {
             borderBottomWidth: 8,
             borderBottomColor: "#46CDCF",
           }}
-          onPress={() => {
-            navigation.navigate("Dashboard");
-          }}
         >
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Dashboard");
+            }}
+          >
             <Text
               style={{
                 fontWeight: "900",
