@@ -4,9 +4,7 @@ import {
   TouchableWithoutFeedback,
   useWindowDimensions,
 } from "react-native";
-
 import { Audio } from "expo-av";
-
 import {
   Animated,
   Dimensions,
@@ -20,10 +18,10 @@ import LottieView from "lottie-react-native";
 
 import GestureRecognizer, { swipeDirections } from "react-native-swipe-detect";
 
-export default function Task5({ setPosition }) {
+export default function Task6({ setPosition }) {
   const [fadeAnim] = useState(new Animated.Value(0));
-  const [timing] = useState(new Animated.Value(0));
   const [sound, setSound] = useState();
+  const [timing] = useState(new Animated.Value(0));
 
   const animation = useRef(null);
 
@@ -45,12 +43,13 @@ export default function Task5({ setPosition }) {
   const playSound = async () => {
     console.log("Loading sound");
     const { sound } = await Audio.Sound.createAsync(
-      require("../../assets/Task1_audio/8th.mp3")
+      require("../../assets/Task1_audio/7th.mp3")
     );
     setSound(sound);
     console.log("playing");
     await sound.playAsync();
   };
+
   useEffect(() => {
     return sound
       ? () => {
@@ -59,14 +58,38 @@ export default function Task5({ setPosition }) {
         }
       : undefined;
   }, [sound]);
+
   return (
     <>
+      {/* <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
+        <Text>Hello World</Text>
+      </Animated.View> */}
       <View style={[styles.image_container]}>
         <ImageBackground
           style={styles.image}
-          source={require("../../assets/Task_1/Phone_4.png")}
+          source={require("../../assets/Task_1/Phone_3.png")}
         ></ImageBackground>
       </View>
+      <TouchableWithoutFeedback
+        onPress={() => {
+          setPosition((curr) => curr + 1);
+        }}
+      >
+        <LottieView
+          autoPlay
+          style={{
+            position: "absolute",
+            width: 200,
+            height: 200,
+            right: -5,
+            top: -5,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          ref={animation}
+          source={require("../../assets/animations/pointer.json")}
+        />
+      </TouchableWithoutFeedback>
     </>
   );
 }
@@ -77,7 +100,7 @@ const styles = StyleSheet.create({
   },
   taskText: {
     position: "absolute",
-    zIndex: 50,
+    zIndex: 10,
     fontSize: 30,
     color: "white",
     justifyContent: "center",
@@ -90,8 +113,8 @@ const styles = StyleSheet.create({
   image: {
     opacity: 0.6,
     height: "100%",
-    marginTop: 30,
-    paddingHorizontal: 10,
+    marginTop: 10,
+    margin: 5,
     padding: 60,
     width: undefined,
     resizeMode: "contain",

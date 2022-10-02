@@ -1,39 +1,30 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  ImageBackground,
-  TouchableWithoutFeedback,
-  useWindowDimensions,
-} from "react-native";
+import { ImageBackground, TouchableWithoutFeedback } from "react-native";
+import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
 
 import { Audio } from "expo-av";
 
-import {
-  Animated,
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-} from "react-native";
-
 import LottieView from "lottie-react-native";
-
-import GestureRecognizer, { swipeDirections } from "react-native-swipe-detect";
 
 export default function Task4({ setPosition }) {
   const [fadeAnim] = useState(new Animated.Value(0));
-  const [timing] = useState(new Animated.Value(0));
   const [sound, setSound] = useState();
+  const [visible, setVisible] = useState(false);
 
   const animation = useRef(null);
+
   const playSound = async () => {
-    console.log("Loading sound");
-    const { sound } = await Audio.Sound.createAsync(
-      require("../../assets/Task1_audio/enterDetails.mp3")
-    );
-    setSound(sound);
-    console.log("playing");
-    await sound.playAsync();
+    try {
+      console.log("Loading sound");
+      const { sound } = await Audio.Sound.createAsync(
+        require("../../assets/Task1_audio/swipeUp.mp3")
+      );
+      setSound(sound);
+      console.log("playing");
+      await sound.playAsync();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
@@ -44,6 +35,7 @@ export default function Task4({ setPosition }) {
         }
       : undefined;
   }, [sound]);
+
   useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -56,73 +48,23 @@ export default function Task4({ setPosition }) {
         display: "none",
         useNativeDriver: true,
       }).start();
+
       playSound();
     });
   }, []);
-
-  const windowHeight = useWindowDimensions().height;
 
   return (
     <>
       {/* <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
         <Text>Hello World</Text>
       </Animated.View> */}
-      <View
-        style={[
-          styles.image_container,
-          { minHeight: Math.round(windowHeight) + 25 },
-        ]}
-      >
+
+      <View style={styles.image_container}>
         <ImageBackground
           style={styles.image}
-          source={require("../../assets/Task_1/Phone_3_1.png")}
+          source={require("../../assets/Task_3/task_3_3.png")}
         ></ImageBackground>
 
-        {/* <View
-          style={{
-            display: "flex",
-            position: "absolute",
-            width: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-            bottom: 525,
-            height: 30,
-            borderRadius: 5,
-          }}
-        >
-          <TextInput
-            returnKeyType="go"
-            onSubmitEditing={() => {
-              setPosition((curr) => curr + 1);
-            }}
-            style={{
-              width: "65%",
-              backgroundColor: "white",
-              height: 30,
-            }}
-          />
-        </View> */}
-        {/* <View
-          style={{
-            display: "flex",
-            position: "absolute",
-            width: "101%",
-            justifyContent: "center",
-            alignItems: "center",
-            bottom: 455,
-            paddingHorizontal: 5,
-            height: 30,
-            borderRadius: 50,
-          }}
-        >
-          <TextInput
-            style={{
-              width: "65%",
-              backgroundColor: "white",
-              height: 30,
-            }}
-          />
-        </View> */}
         <TouchableWithoutFeedback
           onPress={() => {
             setPosition((curr) => curr + 1);
@@ -132,9 +74,10 @@ export default function Task4({ setPosition }) {
             autoPlay
             style={{
               position: "absolute",
-              width: 400,
-              height: 400,
-              top: 80,
+              width: 200,
+              height: 200,
+              bottom: 70,
+              left: 50,
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -166,7 +109,8 @@ const styles = StyleSheet.create({
   image: {
     opacity: 0.6,
     height: "100%",
-    padding: 60,
+    padding: 100,
+    marginTop: 40,
     width: undefined,
     resizeMode: "contain",
     zIndex: -1,

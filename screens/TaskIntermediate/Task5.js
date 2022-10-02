@@ -1,31 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   ImageBackground,
+  TextInput,
   TouchableWithoutFeedback,
-  useWindowDimensions,
 } from "react-native";
+import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
 
 import { Audio } from "expo-av";
 
-import {
-  Animated,
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-} from "react-native";
-
 import LottieView from "lottie-react-native";
-
-import GestureRecognizer, { swipeDirections } from "react-native-swipe-detect";
 
 export default function Task5({ setPosition }) {
   const [fadeAnim] = useState(new Animated.Value(0));
-  const [timing] = useState(new Animated.Value(0));
-  const [sound, setSound] = useState();
-
-  const animation = useRef(null);
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -39,33 +25,45 @@ export default function Task5({ setPosition }) {
         display: "none",
         useNativeDriver: true,
       }).start();
-      playSound();
     });
   }, []);
-  const playSound = async () => {
-    console.log("Loading sound");
-    const { sound } = await Audio.Sound.createAsync(
-      require("../../assets/Task1_audio/8th.mp3")
-    );
-    setSound(sound);
-    console.log("playing");
-    await sound.playAsync();
-  };
-  useEffect(() => {
-    return sound
-      ? () => {
-          console.log("Unloading sound");
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
+
   return (
     <>
-      <View style={[styles.image_container]}>
+      {/* <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
+        <Text>Hello World</Text>
+      </Animated.View> */}
+
+      <View style={styles.image_container}>
         <ImageBackground
           style={styles.image}
-          source={require("../../assets/Task_1/Phone_4.png")}
+          source={require("../../assets/Task_3/task_3_3.png")}
         ></ImageBackground>
+        <View
+          style={{
+            position: "absolute",
+            width: "100%",
+            justifyContent: "center",
+            zIndex: 39,
+            top: 690,
+            alignItems: "center",
+          }}
+        >
+          <TextInput
+            style={{
+              width: "45%",
+              borderRadius: 50,
+              paddingHorizontal: 10,
+              height: 40,
+              padding: 0,
+              backgroundColor: "white",
+            }}
+            placeholder="Text message"
+            onSubmitEditing={() => {
+              setPosition((curr) => curr + 1);
+            }}
+          />
+        </View>
       </View>
     </>
   );
@@ -77,7 +75,7 @@ const styles = StyleSheet.create({
   },
   taskText: {
     position: "absolute",
-    zIndex: 50,
+    zIndex: 10,
     fontSize: 30,
     color: "white",
     justifyContent: "center",
@@ -88,11 +86,10 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    opacity: 0.6,
+    opacity: 0.8,
     height: "100%",
-    marginTop: 30,
-    paddingHorizontal: 10,
-    padding: 60,
+    padding: 100,
+    marginTop: 40,
     width: undefined,
     resizeMode: "contain",
     zIndex: -1,

@@ -1,28 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  ImageBackground,
-  TouchableWithoutFeedback,
-  useWindowDimensions,
-} from "react-native";
-
+import { ImageBackground, TouchableWithoutFeedback } from "react-native";
 import { Audio } from "expo-av";
-
-import {
-  Animated,
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-} from "react-native";
+import { Animated, Dimensions, StyleSheet, View } from "react-native";
 
 import LottieView from "lottie-react-native";
+import { Text } from "react-native";
 
-import GestureRecognizer, { swipeDirections } from "react-native-swipe-detect";
-
-export default function Task5({ setPosition }) {
+export default function Final({ setPosition }) {
   const [fadeAnim] = useState(new Animated.Value(0));
-  const [timing] = useState(new Animated.Value(0));
   const [sound, setSound] = useState();
 
   const animation = useRef(null);
@@ -32,7 +17,7 @@ export default function Task5({ setPosition }) {
       toValue: 1,
       duration: 1000,
       useNativeDriver: true,
-    }).start(({ finished }) => {
+    }).start(() => {
       Animated.timing(fadeAnim, {
         toValue: 0,
         duration: 50,
@@ -42,6 +27,7 @@ export default function Task5({ setPosition }) {
       playSound();
     });
   }, []);
+
   const playSound = async () => {
     console.log("Loading sound");
     const { sound } = await Audio.Sound.createAsync(
@@ -51,6 +37,7 @@ export default function Task5({ setPosition }) {
     console.log("playing");
     await sound.playAsync();
   };
+
   useEffect(() => {
     return sound
       ? () => {
@@ -59,25 +46,47 @@ export default function Task5({ setPosition }) {
         }
       : undefined;
   }, [sound]);
+
   return (
     <>
-      <View style={[styles.image_container]}>
-        <ImageBackground
-          style={styles.image}
-          source={require("../../assets/Task_1/Phone_4.png")}
-        ></ImageBackground>
-      </View>
+      <View style={[styles.image_container]}></View>
+      <LottieView
+        autoPlay
+        style={{
+          position: "absolute",
+          width: 430,
+          height: 550,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        ref={animation}
+        source={require("../../assets/animations/congrats.json")}
+      />
+      <LottieView
+        autoPlay
+        style={{
+          position: "absolute",
+          justifyContent: "center",
+          alignItems: "center",
+          width: 300,
+          top: 150,
+          left: 25,
+          height: 300,
+        }}
+        ref={animation}
+        source={require("../../assets/animations/congrats_text.json")}
+      />
     </>
   );
 }
 
 const styles = StyleSheet.create({
   image_container: {
-    backgroundColor: "black",
+    backgroundColor: "white",
   },
   taskText: {
     position: "absolute",
-    zIndex: 50,
+    zIndex: 10,
     fontSize: 30,
     color: "white",
     justifyContent: "center",
@@ -90,8 +99,8 @@ const styles = StyleSheet.create({
   image: {
     opacity: 0.6,
     height: "100%",
-    marginTop: 30,
-    paddingHorizontal: 10,
+    marginTop: 10,
+    margin: 5,
     padding: 60,
     width: undefined,
     resizeMode: "contain",
