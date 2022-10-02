@@ -4,7 +4,7 @@ import EnterPhone from "../../components/InitalScreens/EnterPhone";
 import GetStarted from "../../components/InitalScreens/GetStarted";
 import SelectMode from "../../components/InitalScreens/SelectMode";
 import VerifyOtp from "../../components/InitalScreens/VerifyOtp";
-
+import LottieView from "lottie-react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getReactNativePersistence } from "firebase/auth/react-native";
 

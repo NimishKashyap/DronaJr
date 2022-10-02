@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: "80%",
-    borderRadius: 25,
+    borderRadius: 8,
     display: "flex",
     paddingHorizontal: 20,
     flexDirection: "row",
@@ -38,10 +38,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    borderBottomColor: "#b3b300",
-    borderBottomWidth: 5,
-    borderRightColor: "#cccc00",
-    borderRightWidth: 5
+    borderBottomColor: "#46CDCF",
+    borderBottomWidth: 8,
+    backgroundColor: "#ABEDD8",
   },
   OTP: {
     display: "flex",

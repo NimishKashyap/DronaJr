@@ -76,9 +76,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    borderBottomColor: "#aa7441",
+    borderBottomColor: "#46CDCF",
     borderBottomWidth: 8,
-    backgroundColor: "#d69251",
+    backgroundColor: "#ABEDD8",
   },
   loginText: {
     fontWeight: "900",
