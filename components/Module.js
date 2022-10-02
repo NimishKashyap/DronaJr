@@ -19,55 +19,55 @@ const DATA = [
     title: "Level 1: Beginner",
     description: "Description about beginner Level Tasks",
     image: "https://i.imgur.com/RYncwOS.png",
+    to: "beginner_video",
   },
   {
     id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
     title: "Level 2: Intermediate",
     description: "Description about Intermediate Level Tasks",
     image: "https://i.imgur.com/pqKLXoz.png",
+    to: "intermediate",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",
     title: "Level 3: Advanced",
     description: "Description about Advanced Level Tasks",
     image: "https://i.imgur.com/lqU5VZi.png",
+    to: "#",
   },
 ];
 
-const Item = ({ title, description, image }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-    <Text>{description} </Text>
-    <Image
-      style={styles.imgAvatar}
-      source={{ uri: image }}
-      resizeMode={"cover"}
-    />
-  </View>
+const Item = ({ title, description, image, to, navigation }) => (
+  <TouchableOpacity
+    onPress={() => {
+      navigation.push(to);
+      console.log(to);
+    }}
+  >
+    <View style={styles.item}>
+      <Text style={styles.title}>{title}</Text>
+      <Text>{description} </Text>
+      <Image
+        style={styles.imgAvatar}
+        source={{ uri: image }}
+        resizeMode={"cover"}
+      />
+    </View>
+  </TouchableOpacity>
 );
 
-export default function Module({
-  phoneNumber,
-  setPhoneNumber,
-  screenNo,
-  setScreenNo,
-  navigation,
-  callback,
-}) {
+export default function Module({ phoneNumber, callback, navigation }) {
   const renderItem = ({ item }) => (
     <Item
       title={item.title}
       description={item.description}
       image={item.image}
+      to={item.to}
+      navigation={navigation}
     />
   );
   return (
     <View style={styles.container}>
-      <BackButton
-        onPress={() => {
-          setScreenNo((prev) => prev - 1);
-        }}
-      />
       <StatusBar style="auto" />
       <Text style={styles.welcome}>Welcome to DronaJr, User !!</Text>
       <FlatList
