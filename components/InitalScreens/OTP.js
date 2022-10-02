@@ -38,7 +38,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    backgroundColor: "#FF1493",
+    borderBottomColor: "#b3b300",
+    borderBottomWidth: 5,
+    borderRightColor: "#cccc00",
+    borderRightWidth: 5
   },
   OTP: {
     display: "flex",
