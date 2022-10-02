@@ -6,19 +6,61 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
+  Image,
+  FlatList,
+  SafeAreaView,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import BackButton from "../BackButton";
+import BackButton from "./BackButton";
 
-import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
-import { firebaseConfig } from "../../firebase/setup";
-export default function EnterPhone({
+const DATA = [
+  {
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    title: "Level 1: Beginner",
+    description: "Description about beginner Level Tasks",
+    image: "https://i.imgur.com/RYncwOS.png",
+  },
+  {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    title: "Level 2: Intermediate",
+    description: "Description about Intermediate Level Tasks",
+    image: "https://i.imgur.com/pqKLXoz.png",
+  },
+  {
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Level 3: Advanced",
+    description: "Description about Advanced Level Tasks",
+    image: "https://i.imgur.com/lqU5VZi.png",
+  },
+];
+
+const Item = ({ title, description, image }) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+    <Text>{description} </Text>
+    <Image
+      style={styles.imgAvatar}
+      source={{ uri: image }}
+      resizeMode={"cover"}
+    />
+  </View>
+);
+
+export default function Task({
   phoneNumber,
   setPhoneNumber,
+  screenNo,
   setScreenNo,
+  navigation,
   callback,
-  recaptchaVerifier,
 }) {
+  const renderItem = ({ item }) => (
+    <Item
+      title={item.title}
+      description={item.description}
+      image={item.image}
+    />
+  );
   return (
     <View style={styles.container}>
       <BackButton
@@ -27,21 +69,12 @@ export default function EnterPhone({
         }}
       />
       <StatusBar style="auto" />
-      <FirebaseRecaptchaVerifierModal
-        ref={recaptchaVerifier}
-        firebaseConfig={firebaseConfig}
+      <Text style={styles.welcome}>Welcome to DronaJr, User !!</Text>
+      <FlatList
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
       />
-
-      {/* <Text style={styles.welcome}>Welcome</Text> */}
-      {/* <OTP /> */}
-      <TextInput
-        value={phoneNumber}
-        onChangeText={(newPhone) => setPhoneNumber(newPhone)}
-        style={styles.inputView}
-        placeholder="Enter Phone Number"
-        keyboardType="numeric"
-      ></TextInput>
-
       <TouchableOpacity
         style={styles.loginBtn}
         onPress={() => {
@@ -62,11 +95,17 @@ export default function EnterPhone({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 200,
+    paddingBottom: -100,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
-
+  imgAvatar: {
+    marginLeft: 170,
+    width: 60,
+    height: 60,
+  },
   inputView: {
     backgroundColor: "#eeee",
     borderRadius: 30,
@@ -74,7 +113,6 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     height: 45,
     marginBottom: 20,
-
     alignItems: "center",
   },
   icon: {
@@ -93,15 +131,28 @@ const styles = StyleSheet.create({
     height: 30,
     marginBottom: 30,
   },
-
+  item: {
+    padding: 20,
+    backgroundColor: "#eee",
+    margin: 10,
+    borderRadius: 10,
+    borderBottomColor: "#48466D",
+    borderBottomWidth: 5,
+    borderRightColor: "#0081C6",
+    borderRightWidth: 5,
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 15,
+  },
   loginBtn: {
     width: "80%",
+    marginBottom: 100,
     borderRadius: 8,
     display: "flex",
     paddingHorizontal: 20,
     flexDirection: "row",
     height: 50,
-
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,

@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-
+import React, { useEffect, useRef, useState } from "react";
+import LottieView from "lottie-react-native";
 import {
   View,
   Image,
@@ -12,8 +13,21 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 
 export default function GetStarted({ screenNo, setScreenNo }) {
+  const animation = useRef(null);
   return (
     <View style={styles.container}>
+       <LottieView
+        autoPlay
+        style={{
+          position: "absolute",
+          width: 930,
+          height: 790,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        ref={animation}
+        source={require("../../assets/animations/background.json")}
+      />
       <Image style={styles.image} source={require("../../assets/logo.png")} />
 
       <StatusBar style="auto" />
@@ -71,9 +85,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginTop: 20,
-    borderBottomColor: "#ccb419",
+    borderBottomColor: "#46CDCF",
     borderBottomWidth: 8,
-    backgroundColor: "#ebd960",
+    backgroundColor: "#ABEDD8",
   },
   loginText: {
     fontWeight: "900",
