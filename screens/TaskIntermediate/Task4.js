@@ -17,7 +17,7 @@ export default function Task4({ setPosition }) {
     try {
       console.log("Loading sound");
       const { sound } = await Audio.Sound.createAsync(
-        require("../../assets/Task1_audio/swipeUp.mp3")
+        require("../../assets/message/task3_3.mp3")
       );
       setSound(sound);
       console.log("playing");

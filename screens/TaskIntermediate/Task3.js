@@ -16,7 +16,7 @@ export default function Task3({ setPosition }) {
     try {
       console.log("Loading sound");
       const { sound } = await Audio.Sound.createAsync(
-        require("../../assets/Task1_audio/swipeUp.mp3")
+        require("../../assets/message/selectWhom.mp3")
       );
       setSound(sound);
       console.log("playing");
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
-    opacity: 0.8,
+    opacity: 0.6,
     height: "100%",
     padding: 100,
     marginTop: 40,
