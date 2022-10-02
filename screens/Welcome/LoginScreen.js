@@ -71,7 +71,7 @@ export default function LoginScreen(props) {
       console.log("After credentials");
       const response = await signInWithCredential(auth, credential);
       AsyncStorage.setItem(phoneNumber, JSON.stringify(response));
-      props.navigation.navigate("module");
+      props.navigation.navigate("Dashboard");
     } catch (err) {
       console.error(err);
     }
