@@ -1,5 +1,6 @@
 import { AntDesign } from "@expo/vector-icons";
 import React, { useState, useRef, useEffect, useCallback } from "react";
+import LottieView from "lottie-react-native";
 import {
   View,
   TextInput,
@@ -103,8 +104,21 @@ export default function OTP({
     }
     inputCodeRef.current[destIndex].focus();
   };
+  const animation = useRef(null);
   return (
     <View style={styles.OTP}>
+             <LottieView
+        autoPlay
+        style={{
+          position: "absolute",
+          width: 630,
+          height: 1090,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        ref={animation}
+        source={require("../../assets/animations/background1.json")}
+      />
       <View style={styles.form}>
         {codes.map((code, index) => {
           return (

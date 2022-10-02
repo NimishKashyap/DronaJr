@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-
+import React, { useEffect, useRef, useState } from "react";
+import LottieView from "lottie-react-native";
 import {
   View,
   Text,
@@ -19,8 +20,22 @@ export default function EnterPhone({
   callback,
   recaptchaVerifier,
 }) {
+  const animation = useRef(null);
   return (
     <View style={styles.container}>
+      
+      <LottieView
+        autoPlay
+        style={{
+          position: "absolute",
+          width: 930,
+          height: 790,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        ref={animation}
+        source={require("../../assets/animations/background.json")}
+      />
       <BackButton
         onPress={() => {
           setScreenNo((prev) => prev - 1);
