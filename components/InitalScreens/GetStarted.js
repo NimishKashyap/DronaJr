@@ -20,13 +20,13 @@ export default function GetStarted({ screenNo, setScreenNo }) {
         autoPlay
         style={{
           position: "absolute",
-          width: 930,
-          height: 790,
+          width: 630,
+          height: 1090,
           justifyContent: "center",
           alignItems: "center",
         }}
         ref={animation}
-        source={require("../../assets/animations/background.json")}
+        source={require("../../assets/animations/background1.json")}
       />
       <Image style={styles.image} source={require("../../assets/logo.png")} />
 
