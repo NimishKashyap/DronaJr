@@ -2,27 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import {
   ImageBackground,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   useWindowDimensions,
 } from "react-native";
-import {
-  Animated,
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-} from "react-native";
-
-import LottieView from "lottie-react-native";
-
-import GestureRecognizer, { swipeDirections } from "react-native-swipe-detect";
+import { Animated, Dimensions, StyleSheet, Text, View } from "react-native";
 
 export default function Task4_1({ setPosition }) {
   const [fadeAnim] = useState(new Animated.Value(0));
-  const [timing] = useState(new Animated.Value(0));
-
-  const animation = useRef(null);
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -43,9 +28,6 @@ export default function Task4_1({ setPosition }) {
 
   return (
     <>
-      {/* <Animated.View style={[styles.container, { opacity: fadeAnim }]}>
-        <Text>Hello World</Text>
-      </Animated.View> */}
       <View
         style={[
           styles.image_container,
