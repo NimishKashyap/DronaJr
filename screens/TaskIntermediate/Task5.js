@@ -12,6 +12,29 @@ import LottieView from "lottie-react-native";
 
 export default function Task5({ setPosition }) {
   const [fadeAnim] = useState(new Animated.Value(0));
+  const [sound, setSound] = useState();
+  const playSound = async () => {
+    try {
+      console.log("Loading sound");
+      const { sound } = await Audio.Sound.createAsync(
+        require("../../assets/message/task3_4.mp3")
+      );
+      setSound(sound);
+      console.log("playing");
+      await sound.playAsync();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log("Unloading sound");
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -25,6 +48,7 @@ export default function Task5({ setPosition }) {
         display: "none",
         useNativeDriver: true,
       }).start();
+      playSound();
     });
   }, []);
 
