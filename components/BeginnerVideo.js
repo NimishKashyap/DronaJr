@@ -2,15 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { Audio, Video } from "expo-av";
 import { View } from "react-native";
 
-export const BeginnerVieo = ({ navigation }) => {
+export const BeginnerVideo = ({ navigation }) => {
   const video = useRef(null);
-  const [status, setStatus] = useState();
-
-  useEffect(() => {
-    if (status.didJustFinish) {
-      navigation.push("Beginners");
-    }
-  }, [status]);
+  //   const [status, setStatus] = useState({ didJustFinish: () => {} });
 
   return (
     <View style={{ flex: 1 }}>
@@ -20,7 +14,11 @@ export const BeginnerVieo = ({ navigation }) => {
         source={require("../assets/Beginner.mp4")}
         shouldPlay
         resizeMode="cover"
-        onPlaybackStatusUpdate={(status) => setStatus(() => status)}
+        onPlaybackStatusUpdate={(status) => {
+          if (status.didJustFinish) {
+            navigation.push("Beginners");
+          }
+        }}
       />
     </View>
   );

@@ -26,7 +26,7 @@ const DATA = [
     title: "Level 2: Intermediate",
     description: "Description about Intermediate Level Tasks",
     image: "https://i.imgur.com/pqKLXoz.png",
-    to: "intermediate",
+    to: "intermediate_video",
   },
   {
     id: "58694a0f-3da1-471f-bd96-145571e29d72",

@@ -5,8 +5,10 @@ import { Animated, Dimensions, StyleSheet, View } from "react-native";
 
 import LottieView from "lottie-react-native";
 import { Text } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
+import { TouchableOpacity } from "react-native";
 
-export default function Final({ setPosition }) {
+export default function Final({ setPosition, navigation }) {
   const [fadeAnim] = useState(new Animated.Value(0));
   const [sound, setSound] = useState();
 
@@ -76,6 +78,48 @@ export default function Final({ setPosition }) {
         ref={animation}
         source={require("../../assets/animations/congrats_text.json")}
       />
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          height: Dimensions.get("screen").height,
+          transform: [
+            {
+              translateY: 100,
+            },
+          ],
+        }}
+      >
+        <View
+          style={{
+            backgroundColor: "#ABEDD8",
+            width: "80%",
+            justifyContent: "center",
+            alignItems: "center",
+            height: 50,
+            borderRadius: 8,
+            borderBottomWidth: 8,
+            borderBottomColor: "#46CDCF",
+          }}
+          onPress={() => {
+            navigation.navigate("Dashboard");
+          }}
+        >
+          <TouchableOpacity>
+            <Text
+              style={{
+                fontWeight: "900",
+                letterSpacing: 3,
+                fontSize: 20,
+                color: "white",
+              }}
+            >
+              Continue
+              <AntDesign name="rightcircle" size={24} />
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </>
   );
 }

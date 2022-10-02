@@ -15,7 +15,7 @@ import Task6 from "./Task6";
 // import Task5 from "./Task5";
 // import Task6 from "./Task6";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [position, setPosition] = useState(1);
 
   return (
@@ -40,7 +40,11 @@ const Home = () => {
         <Task6 setPosition={setPosition} position={position} />
       )}
       {position === 7 && (
-        <Final setPosition={setPosition} position={position} />
+        <Final
+          navigation={navigation}
+          setPosition={setPosition}
+          position={position}
+        />
       )}
     </View>
   );
